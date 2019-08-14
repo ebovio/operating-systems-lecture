@@ -1,9 +1,3 @@
-/***********************************************************************
-* Code listing from "Advanced Linux Programming," by CodeSourcery LLC  *
-* Copyright (C) 2001 by New Riders Publishing                          *
-* See COPYRIGHT for license information.                               *
-***********************************************************************/
-
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
@@ -13,7 +7,7 @@
 int main (int argc, char* argv[])
 {
   char* file = argv[1];
-  int fd,milkStorage;
+  int fd,milk_Storage;
   FILE *quantity = fopen(file,"r");
   char c[1000];
   struct flock lock;
@@ -27,10 +21,10 @@ int main (int argc, char* argv[])
   /*Return the info inside the file in a integer*/
   fscanf(quantity,"%[^\n]",c);
   fclose(quantity);
-  milkStorage = atoi(c);
+  milk_Storage = atoi(c);
 
   /* Open a file descriptor to the file.  */
-  printf ("Checking availability of milkStorage in:  %s\n", file);
+  printf ("Checking availability of milk in:  %s\n", file);
   fd = open (file, O_WRONLY);
   printf ("Please wait...\n");
 
@@ -41,19 +35,19 @@ int main (int argc, char* argv[])
   /* Place a write lock on the file.  */
   fcntl (fd, F_SETLKW, &lock);
 
-  /*Updates, in a file, the available milkStorage*/
-  if(milkStorage > 0 ){
-    printf("%s\n", "Yes, we have milkStorage!");
-    milkStorage = milkStorage -1;
+  /*Updates, in a file, the available milk_Storage*/
+  if(milk_Storage > 0 ){
+    printf("%s\n", "Yes, we have milk!");
+    milk_Storage = milk_Storage -1;
     quantity = fopen(file, "w");
-    fprintf(quantity, "%d",milkStorage);
+    fprintf(quantity, "%d",milk_Storage);
     fclose(quantity);
     printf ("Press enter to pay.");
     getchar ();
     printf ("Thanks for buying with us!\n");
 
   }else{
-    printf("%s\n", "I'm sorry, we don't have milkStorage anymore, press enter to exit.");
+    printf("%s\n", "I'm sorry, we don't have milk anymore, press enter to exit.");
     getchar ();
     printf ("Thanks for your visit!\n");
   }
@@ -62,5 +56,4 @@ int main (int argc, char* argv[])
   fcntl (fd, F_SETLKW, &lock);
   close (fd);
   return 0;
-
 }

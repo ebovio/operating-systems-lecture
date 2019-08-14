@@ -17,7 +17,7 @@ void* doSomeThing(void *arg)
 {
 //    pthread_mutex_lock(&lock);
     unsigned long i = 0;
-    
+
     counter += 1;
     printf("\n Job %d started\n", counter);
 

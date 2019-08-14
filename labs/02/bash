@@ -1,0 +1,29 @@
+
+du -a linux | cut -d/ -f2 | uniq -c | sort -r
+
+echo Number of README
+find . -name "README" | wc -l
+echo Number od Kconfig files
+find . -name "Kconfig" | wc -l
+echo Number of Kbuild files
+find . -name "Kbuild" | wc -l
+echo Number of Makefiles
+find . -name "Makefile" | wc -l
+echo Number of .c files
+find . -name "*.c" | wc -l
+echo Number of .h files
+find . -name "*.h" | wc -l
+echo Number of .pl files
+find . -name "*.pl" | wc -l
+
+echo Number of times the "#include <linux/module.h>" appears:
+
+mkdir C_FILES
+mkdir H_FILES
+cp -R **/*.c ./C_FILES
+cp -R **/*.h ./H_FILES
+
+echo Number of .c files:
+find . -name "*.c" | wc -l
+echo Number of .h files:
+find . -name "*.h" | wc -l
